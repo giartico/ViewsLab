@@ -12,14 +12,31 @@ namespace ViewsLab.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            ViewBag.Message = "I am learning ASP.NET Core MVC";
+            return View("SampleView");
         }
 
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
 
-            return View();
+            ViewsLab.Models.Movie movie = new Models.Movie
+            {
+                ID = 1,
+                Title = "Follow the Wind",
+                ReleaseDate = new DateTime(2017, 01, 21)
+            };
+            return View(movie);
+
+
+        }
+
+        [HttpPost]
+        public IActionResult About(Models.Movie movieIncoming)
+        {
+            // Your logic here
+
+            return View(movieIncoming);
         }
 
         public IActionResult Contact()
